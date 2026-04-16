@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills Creator Agent</title>
+<style>
+  :root { --bg: #0d1117; --fg: #c9d1d9; --accent: #58a6ff; --accent2: #f78166; --card: #161b22; --border: #30363d; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.6; }
+  .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+  header { padding: 80px 0 40px; text-align: center; }
+  header h1 { font-size: 3rem; font-weight: 800; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 16px; }
+  header p { font-size: 1.25rem; color: #8b949e; max-width: 600px; margin: 0 auto; }
+  .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin: 4px; }
+  .badge-openclaw { background: #1f6feb22; color: #58a6ff; border: 1px solid #1f6feb44; }
+  .badge-bigmodel { background: #f7816622; color: #f78166; border: 1px solid #f7816644; }
+  .badges { margin-top: 20px; }
+  .flow { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; margin: 40px 0; }
+  .flow-step { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 16px; font-size: 0.9rem; font-weight: 600; }
+  .flow-arrow { color: #484f58; font-size: 1.2rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 40px 0; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+  .card h3 { color: var(--accent); margin-bottom: 8px; font-size: 1.1rem; }
+  .card p { color: #8b949e; font-size: 0.9rem; }
+  h2 { font-size: 1.8rem; margin: 60px 0 20px; text-align: center; }
+  .formats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 30px 0; }
+  .format { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center; }
+  .format .icon { font-size: 2rem; margin-bottom: 8px; }
+  .format .name { font-weight: 700; font-size: 0.95rem; }
+  .format .desc { color: #8b949e; font-size: 0.8rem; margin-top: 4px; }
+  .cta { text-align: center; margin: 60px 0; }
+  .cta a { display: inline-block; padding: 14px 32px; background: var(--accent); color: #0d1117; font-weight: 700; font-size: 1.1rem; border-radius: 8px; text-decoration: none; transition: opacity .2s; }
+  .cta a:hover { opacity: .85; }
+  .code-block { background: #0d1117; border: 1px solid var(--border); border-radius: 8px; padding: 20px; overflow-x: auto; margin: 20px 0; font-family: 'SF Mono', Menlo, monospace; font-size: 0.85rem; color: #c9d1d9; white-space: pre; }
+  footer { text-align: center; padding: 40px 0; color: #484f58; font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 60px; }
+  footer a { color: var(--accent); text-decoration: none; }
+  .section-subtitle { text-align: center; color: #8b949e; max-width: 600px; margin: 0 auto 30px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>🦞 Skills Creator Agent</h1>
+  <p>Turn domain expertise into production-ready Agent Skills through Socratic conversation. Voice-first. Multi-framework.</p>
+  <div class="badges">
+    <span class="badge badge-openclaw">Built on OpenClaw</span>
+    <span class="badge badge-bigmodel">Powered by GLM-4</span>
+  </div>
+</header>
+
+<div class="flow">
+  <div class="flow-step">💬 IDEATION</div><span class="flow-arrow">→</span>
+  <div class="flow-step">🔍 REFINEMENT</div><span class="flow-arrow">→</span>
+  <div class="flow-step">⚙️ GENERATION</div><span class="flow-arrow">→</span>
+  <div class="flow-step">📋 EVAL</div><span class="flow-arrow">→</span>
+  <div class="flow-step">🧪 TEST</div><span class="flow-arrow">→</span>
+  <div class="flow-step">🔄 ITERATE</div><span class="flow-arrow">→</span>
+  <div class="flow-step">📦 EXPORT</div>
+</div>
+
+<h2>How It Works</h2>
+<p class="section-subtitle">The expert talks. The agent asks probing questions, generates a skill, tests it, and exports to your framework of choice.</p>
+
+<div class="grid">
+  <div class="card">
+    <h3>🎙 Voice-First Design</h3>
+    <p>One question per turn. Verbal summaries at transitions. Optimized for speech, not text walls.</p>
+  </div>
+  <div class="card">
+    <h3>🧠 Deep Knowledge Extraction</h3>
+    <p>Socratic questioning probes for edge cases, failure modes, quality criteria, and domain vocabulary.</p>
+  </div>
+  <div class="card">
+    <h3>🧪 Closed-Loop Testing</h3>
+    <p>Auto-generates behavioral evals from conversation examples. Runs tests. Iterates until they pass.</p>
+  </div>
+  <div class="card">
+    <h3>📦 Multi-Framework Export</h3>
+    <p>One conversation → skills for Claude Code, OpenClaw, Cursor, Hermes, or any LLM.</p>
+  </div>
+</div>
+
+<h2>Export Formats</h2>
+
+<div class="formats">
+  <div class="format">
+    <div class="icon">🤖</div>
+    <div class="name">Claude Code</div>
+    <div class="desc">SKILL.md + scripts</div>
+  </div>
+  <div class="format">
+    <div class="icon">🦞</div>
+    <div class="name">OpenClaw</div>
+    <div class="desc">SOUL + AGENTS + skills</div>
+  </div>
+  <div class="format">
+    <div class="icon">⌨️</div>
+    <div class="name">Cursor</div>
+    <div class="desc">.cursorrules</div>
+  </div>
+  <div class="format">
+    <div class="icon">🪶</div>
+    <div class="name">Hermes</div>
+    <div class="desc">agent.yaml + prompts</div>
+  </div>
+  <div class="format">
+    <div class="icon">📄</div>
+    <div class="name">Generic</div>
+    <div class="desc">PROMPT.md</div>
+  </div>
+</div>
+
+<h2>Quick Start</h2>
+
+<div class="code-block">git clone https://github.com/xiaopingfeng/skills-creator.git
+cd skills-creator && pip install -r requirements.txt
+
+# Register as OpenClaw agent
+openclaw agents add skills-creator --workspace ./workspace
+
+# Set your LLM API key
+export OPENAI_API_KEY=your-key
+export OPENAI_BASE_URL=https://your-api/v1
+
+# Start
+openclaw gateway && openclaw tui</div>
+
+<div class="cta">
+  <a href="https://github.com/xiaopingfeng/skills-creator">View on GitHub →</a>
+</div>
+
+<footer>
+  <p>MIT License · Built with <a href="https://openclaw.ai/">OpenClaw</a> · <a href="https://github.com/xiaopingfeng/skills-creator">GitHub</a></p>
+</footer>
+
+</div>
+</body>
+</html>

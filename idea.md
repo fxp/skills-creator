@@ -1,0 +1,1 @@
+一个通过语音对话方式进行的Skills创建的Agent，Agent能深度讨论细化，生成evals，实时测试，引导专家生成更好更能完成任务的skills

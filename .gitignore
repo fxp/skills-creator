@@ -1,0 +1,18 @@
+# OpenClaw state
+workspace/.openclaw/
+workspace/.session/
+workspace/output/
+workspace/memory/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp
+/tmp/
+*.log
