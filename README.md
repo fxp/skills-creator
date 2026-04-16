@@ -2,7 +2,7 @@
 
 **Voice-first, dialogue-driven AI Skill creation** — turn domain expertise into production-ready Agent Skills through Socratic conversation.
 
-Built on [OpenClaw](https://openclaw.ai/) with [BigModel (GLM-4)](https://open.bigmodel.cn/) as the default LLM.
+Built on [OpenClaw](https://openclaw.ai/) with [BigModel (GLM-5)](https://open.bigmodel.cn/) as the default LLM.
 
 ## What It Does
 

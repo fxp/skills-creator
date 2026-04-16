@@ -59,7 +59,7 @@ hermes-export/
 ```
 
 **映射规则：**
-- agent.yaml ← name + model(glm-4-plus) + tools(从 allowed-tools 映射)
+- agent.yaml ← name + model(glm-5) + tools(从 allowed-tools 映射)
 - system.md ← SOUL 角色 + SKILL.md body 合并
 - examples/ ← session.json 中的 example_1, example_2 转为 few-shot 格式
 
