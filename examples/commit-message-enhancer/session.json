@@ -1,0 +1,72 @@
+{
+  "phase": "eval",
+  "skill_name": "commit-message-enhancer",
+  "started_at": "2026-04-16T23:30:00Z",
+  "language": "zh",
+  "decisions": [
+    {
+      "topic": "task_description",
+      "decision": "分析 git diff 并生成符合 Conventional Commits 规范的 commit message（中英双语），包括类型标签、范围、简洁的描述和可选的详细说明",
+      "turn": 1
+    },
+    {
+      "topic": "trigger",
+      "decision": "用户说'帮我写commit'、'生成提交信息'、'commit message'、'git commit'时触发",
+      "turn": 2
+    },
+    {
+      "topic": "example_1",
+      "decision": "输入：修改了 auth/login.py 和 auth/tokens.py，添加了 JWT refresh token 逻辑。输出：'feat(auth): add JWT refresh token support'",
+      "turn": 3
+    },
+    {
+      "topic": "output_format",
+      "decision": "标准 Conventional Commits 格式：type(scope): description\\n\\n[optional body]\\n\\n[optional footer]",
+      "turn": 4
+    },
+    {
+      "topic": "example_2",
+      "decision": "输入：修复了 payment.py 中的浮点数精度 bug。输出：'fix(payment): correct floating-point precision in amount calculation'",
+      "turn": 5
+    },
+    {
+      "topic": "audience",
+      "decision": "后端和全栈开发者，希望 commit 历史清晰规范",
+      "turn": 6
+    },
+    {
+      "topic": "edge_cases",
+      "decision": "空 diff（没有 staged 变更）;超大 diff（>1000 行变更，分解为多个建议）;纯格式化改动（如 prettier）不应生成 feat，应生成 style/chore;只改了文档用 docs；改了测试用 test",
+      "turn": 7
+    },
+    {
+      "topic": "quality_criteria",
+      "decision": "description 必须是祈使句（add/fix/update 开头），不超过 72 字符；type 必须是 Conventional Commits 标准 7 种之一（feat/fix/docs/style/refactor/test/chore）；scope 尽量从修改的路径推断",
+      "turn": 8
+    },
+    {
+      "topic": "domain_vocabulary",
+      "decision": "Conventional Commits(约定式提交), scope(作用域), breaking change(破坏性变更), staged diff(暂存区变更), imperative mood(祈使语气)",
+      "turn": 9
+    },
+    {
+      "topic": "tools_apis",
+      "decision": "git CLI 读取 diff 和 log 历史，不需要外部 API",
+      "turn": 10
+    },
+    {
+      "topic": "security",
+      "decision": "不要把 diff 中的密钥、token 或敏感信息写入 commit message",
+      "turn": 11
+    },
+    {
+      "topic": "scope_exclusions",
+      "decision": "不自动执行 git commit，只生成消息让用户确认；不处理已经 push 的 commit（那是 rewrite 历史，危险）",
+      "turn": 12
+    }
+  ],
+  "skill_draft_path": "/Users/xiaopingfeng/Library/Mobile Documents/iCloud~md~obsidian/Documents/Projects/Skills-Creator/workspace/output/commit-message-enhancer",
+  "eval_path": null,
+  "test_results": [],
+  "iteration_count": 0
+}

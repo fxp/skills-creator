@@ -17,6 +17,17 @@ Domain experts describe their repetitive tasks through natural conversation. The
 
 The expert never needs to know any syntax — they just talk.
 
+## 📦 See a Real Example
+
+Browse [`examples/commit-message-enhancer/`](./examples/commit-message-enhancer/) for a complete, reproducible output:
+
+- [Conversation transcript](./examples/commit-message-enhancer/transcript.md) — 15 dialogue turns across 7 phases
+- [Generated SKILL.md](./examples/commit-message-enhancer/SKILL.md) — Claude Code skill with scripts + glossary
+- [Auto-generated eval suite](./examples/commit-message-enhancer/evals/eval-suite.json) — 8 behavioral tests
+- [4 framework exports](./examples/commit-message-enhancer/exports/) — OpenClaw / Cursor / Hermes / Generic
+
+**All produced end-to-end by this tool from 12 dialogue decisions.** The generated script even catches fake API keys planted in test diffs.
+
 ## Supported Export Formats
 
 | Format | Output | Target |
