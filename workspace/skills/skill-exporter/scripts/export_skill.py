@@ -311,8 +311,19 @@ def export_generic(session: dict, frontmatter: dict, body: str, skill_dir: str, 
     name = session.get("skill_name", "unnamed")
     out = os.path.join(output, "generic")
 
-    # Strip references links from body (lines like "参见 references/xxx.md")
-    clean_body = re.sub(r'(?m)^.*参见\s+references/\S+.*\n?', '', body)
+    # Strip any line that references/links to files in references/, scripts/, assets/
+    # (these paths don't exist in a standalone PROMPT.md export)
+    clean_body = re.sub(
+        r'(?m)^.*\b(?:参见|见|See|see)\b[^\n]*\b(?:references|scripts|assets)/\S+.*\n?',
+        '',
+        body,
+    )
+    # Also strip markdown links to those paths
+    clean_body = re.sub(
+        r'\[([^\]]+)\]\((?:references|scripts|assets)/[^\)]+\)',
+        r'\1',
+        clean_body,
+    )
 
     prompt = f"""# {name}
 
