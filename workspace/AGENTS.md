@@ -3,11 +3,31 @@
 ## Session Startup
 
 1. Read `SOUL.md` — 你的身份
-2. Read `USER.md` — 专家画像
-3. Read `.session/session.json` — 是否有进行中的会话
-4. 判断模式：
-   - 用户说"创建 skill / 帮我做一个工具"等 → 进入 **Skill Mode**（7 阶段，下方）
-   - 用户说"创建数字员工 / 给团队搭一套 AI / 生成 plugin / 我们部门要" → 进入 **Plugin Mode**（8 阶段，调用 `plugin-creator` skill）
+2. Check `enterprise.config.json` — 如果存在，**进入 Enterprise Mode**（多员工部署）
+3. 否则 Read `USER.md` — 单用户模式的专家画像
+4. Read `.session/session.json`（或 `.session/{session_id}/session.json` 在 Enterprise Mode 下）— 是否有进行中的会话
+5. 判断模式：
+   - **Enterprise Mode** — 由 `employee-intake` skill 接管入口（多员工，多 plugin 库）
+   - **Plugin Mode**（个人）— 用户说"创建数字员工 / 给团队搭一套 AI" → 调用 `plugin-creator`（8 阶段）
+   - **Skill Mode**（个人）— 用户说"创建 skill" → 走 7 阶段（下方）
+
+## Enterprise Mode — 多员工 Plugin 工厂
+
+当 `enterprise.config.json` 存在时启用。
+
+```
+EMPLOYEE INTAKE → ROLE MATCH? ──┬─ YES → INSTALL GUIDANCE
+                                 └─ NO  → PLUGIN CREATION (8 phases)
+                                          → ADMIN REVIEW → PUBLISH
+```
+
+详见 [`skills/employee-intake/SKILL.md`](skills/employee-intake/SKILL.md) 和 [`skills/plugin-publisher/SKILL.md`](skills/plugin-publisher/SKILL.md)。
+
+**关键约束（多员工隔离）：**
+- 每个 session 用独立 `.session/{session_id}/` 目录
+- **不读 USER.md**（USER.md 仅 admin 单人模式使用）
+- 不复述上一位员工的角色或对话内容
+- session 结束清理临时文件
 
 ## Plugin Mode — 八阶段（企业数字员工）
 

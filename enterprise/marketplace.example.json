@@ -1,0 +1,6 @@
+{
+  "name": "acme-corp-plugins",
+  "owner": { "name": "Acme Corp" },
+  "description": "Internal AI digital employee plugins for Acme Corp.",
+  "plugins": []
+}

@@ -675,6 +675,35 @@
     </div>
   </section>
 
+  <!-- § V·c — PLUGIN STUDIO (ENTERPRISE) -->
+  <section class="section">
+    <div class="section-num" data-i18n="sStudioNum">§ V·c — Plugin Studio — Enterprise Deployment</div>
+    <h2 class="section-title" data-i18n="sStudioTitle" data-i18n-html>Install once. <em>Every employee</em> self-serves.</h2>
+    <p class="lead" data-i18n="sStudioLead" data-i18n-html>One server. The whole company talks to it. Sales reps get their <em>sales-ops</em> plugin pre-built. New finance hires self-install <em>finance-analyst</em>. Teams without a template walk the agent through 30 minutes of dialogue and ship a custom <em>plugin</em> with admin sign-off.</p>
+
+    <div class="exhibits" style="margin-top:24px;">
+      <div class="exhibit"><div class="label" data-i18n="psA">Component A</div><h3 data-i18n="psATitle">install.sh</h3><div class="target" data-i18n="psAt">One-command setup</div><code>bash install.sh \<br>&nbsp;&nbsp;--target-dir /opt/plugin-studio</code></div>
+      <div class="exhibit"><div class="label" data-i18n="psB">Component B</div><h3 data-i18n="psBTitle">employee-intake</h3><div class="target" data-i18n="psBt">Role detection skill</div><code data-i18n="psBCode">match → install<br>no match → create</code></div>
+      <div class="exhibit"><div class="label" data-i18n="psC">Component C</div><h3 data-i18n="psCTitle">plugin-publisher</h3><div class="target" data-i18n="psCt">Marketplace + approval</div><code data-i18n="psCCode">validate → review<br>→ publish → notify</code></div>
+      <div class="exhibit"><div class="label" data-i18n="psD">Component D</div><h3 data-i18n="psDTitle">enterprise.config.json</h3><div class="target" data-i18n="psDt">Per-company tuning</div><code data-i18n="psDCode">company · admins<br>marketplace · roles</code></div>
+    </div>
+
+    <div class="casefile-grid" style="margin-top:32px;">
+      <a class="casefile" href="https://github.com/fxp/skills-creator/blob/main/enterprise/README.md">
+        <span class="file-no">Doc 07</span>
+        <h4 data-i18n="cf7Title">Deployment Guide</h4>
+        <p data-i18n="cf7Desc">Architecture diagram, install steps, admin flow, security notes.</p>
+        <span class="arrow">→</span>
+      </a>
+      <a class="casefile" href="https://github.com/fxp/skills-creator/blob/main/enterprise/install.sh">
+        <span class="file-no">Doc 08</span>
+        <h4 data-i18n="cf8Title">install.sh</h4>
+        <p data-i18n="cf8Desc">Verified end-to-end on Ubuntu 24.04. Six steps from zero to running.</p>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </section>
+
   <!-- § VI -->
   <section class="section">
     <div class="section-num" data-i18n="s6Num">§ VI — Installation Directives</div>
@@ -788,6 +817,16 @@
       cf5Title: 'Sales Ops — Worked Example', cf5Desc: 'Complete digital employee plugin (plugin.json + 4 skills + command + .mcp.json + README), packaged.',
       cf6Title: '10 Role Catalog', cf6Desc: 'Mission, KPIs, baseline skill list per role.',
 
+      sStudioNum: '§ V·c — Plugin Studio — Enterprise Deployment',
+      sStudioTitle: 'Install once. <em>Every employee</em> self-serves.',
+      sStudioLead: 'One server. The whole company talks to it. Sales reps get their <em>sales-ops</em> plugin pre-built. New finance hires self-install <em>finance-analyst</em>. Teams without a template walk the agent through 30 minutes of dialogue and ship a custom <em>plugin</em> with admin sign-off.',
+      psA: 'Component A', psATitle: 'install.sh', psAt: 'One-command setup',
+      psB: 'Component B', psBTitle: 'employee-intake', psBt: 'Role detection skill', psBCode: 'match → install<br>no match → create',
+      psC: 'Component C', psCTitle: 'plugin-publisher', psCt: 'Marketplace + approval', psCCode: 'validate → review<br>→ publish → notify',
+      psD: 'Component D', psDTitle: 'enterprise.config.json', psDt: 'Per-company tuning', psDCode: 'company · admins<br>marketplace · roles',
+      cf7Title: 'Deployment Guide', cf7Desc: 'Architecture diagram, install steps, admin flow, security notes.',
+      cf8Title: 'install.sh', cf8Desc: 'Verified end-to-end on Ubuntu 24.04. Six steps from zero to running.',
+
       s6Num: '§ VI — Installation Directives',
       s6Title: 'Run it on<br><em>your</em> machine.',
       terminalLabel: '$ TERMINAL — INSTALLATION DIRECTIVES',
@@ -871,6 +910,16 @@
       rPlus: '另外 6 个', rPlusTitle: '市场 · 产品 · 法务 · 数据 · 搜索 · 行政', rPlust: '10 种基线角色模板', rPlusCode: '见 enterprise-roles.md',
       cf5Title: '销售运营 —— 实例', cf5Desc: '完整的数字员工 plugin（plugin.json + 4 个 skill + command + .mcp.json + README），已打包。',
       cf6Title: '10 个角色目录', cf6Desc: '每个角色的使命、KPI、基线技能清单。',
+
+      sStudioNum: '§ V·c —— Plugin Studio —— 企业部署版',
+      sStudioTitle: '装一次。<br><em>每位员工</em>自助。',
+      sStudioLead: '一台服务器，整家公司对着它说话。销售员上来就能领到现成的 <em>sales-ops</em>。新财务自助安装 <em>finance-analyst</em>。没有现成模板的团队，经过 30 分钟对话生成定制 <em>plugin</em>，管理员一键放行。',
+      psA: '组件 A', psATitle: 'install.sh', psAt: '一行命令安装',
+      psB: '组件 B', psBTitle: 'employee-intake', psBt: '员工角色识别', psBCode: '匹配 → 安装<br>不匹配 → 创建',
+      psC: '组件 C', psCTitle: 'plugin-publisher', psCt: '市场 + 审批', psCCode: '校验 → 审核<br>→ 发布 → 通告',
+      psD: '组件 D', psDTitle: 'enterprise.config.json', psDt: '按公司定制', psDCode: '公司 · 管理员<br>市场 · 角色',
+      cf7Title: '部署指南', cf7Desc: '架构图、安装步骤、管理员流程、安全说明。',
+      cf8Title: 'install.sh', cf8Desc: '在 Ubuntu 24.04 上端到端验证。六步从零到运行。',
 
       s6Num: '§ VI —— 安装指令',
       s6Title: '在<em>你的</em>机器上<br>跑起来。',

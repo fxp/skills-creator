@@ -4,12 +4,15 @@
 
 Built on [OpenClaw](https://openclaw.ai/) with [BigModel (GLM-5)](https://open.bigmodel.cn/) as the default LLM.
 
-## Two Modes
+## Three Modes
 
 | Mode | Output | Use Case |
 |------|--------|----------|
 | 🔧 **Skill Mode** | One `SKILL.md` + scripts + tests | Personal automation, project-specific tools |
 | 👥 **Plugin Mode** | Complete plugin: `plugin.json` + N skills + commands + MCP config | Enterprise digital employees, team distributions |
+| 🏢 **Enterprise Mode** ([Plugin Studio](./enterprise/)) | Multi-tenant deployment serving an entire company | Companies that want every employee to self-serve their own AI digital coworker |
+
+**Plugin Studio** is the deployment kit: install once on a company server, employees talk to it via Slack/Telegram/Web/voice → it either installs a ready-made plugin matching their role, or walks them through generating a new one. Admin approval gate, internal marketplace, audit trail. See [`enterprise/README.md`](./enterprise/README.md).
 
 Plugin Mode generates **enterprise-ready digital employees** — bundles of skills wrapped as Claude Code Plugins, including Slack/Notion/Salesforce MCP integration. Inspired by [Anthropic's knowledge-work-plugins](https://github.com/anthropics/knowledge-work-plugins). 10 baseline role templates included (Sales Ops, Finance Analyst, Customer Support, Recruiting, ...).
 

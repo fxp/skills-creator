@@ -1,0 +1,40 @@
+{
+  "company_name": "Acme Corp",
+  "agent_name": "Acme AI Onboarding",
+  "language": "zh",
+
+  "approval_required": true,
+  "admins": ["alice@acme.com", "bob@acme.com"],
+
+  "marketplace": {
+    "type": "local",
+    "path": "./marketplace",
+    "git_remote": null
+  },
+
+  "notification_channels": {
+    "slack_webhook": null,
+    "email": null,
+    "feishu_webhook": null
+  },
+
+  "roles": [
+    "sales-ops",
+    "finance-analyst",
+    "customer-support",
+    "recruiting",
+    "marketing-coordinator",
+    "product-manager",
+    "legal-ops",
+    "data-analyst",
+    "productivity-assistant"
+  ],
+
+  "feedback_endpoint": null,
+
+  "branding": {
+    "tone": "professional, warm, concise",
+    "greeting_zh": "你好！我是 {company_name} 的 AI 同事配置助手。请问你在哪个团队？",
+    "greeting_en": "Hi! I'm {company_name}'s AI Onboarding agent. Which team are you on?"
+  }
+}
