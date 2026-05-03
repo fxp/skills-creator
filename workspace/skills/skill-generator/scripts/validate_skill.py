@@ -48,42 +48,65 @@ def validate_skill(skill_dir: str) -> dict:
         errors.append("Frontmatter must be a YAML mapping")
         return {"valid": False, "errors": errors, "warnings": warnings}
 
-    # 3. name 字段
+    # 3. 仅允许 Anthropic spec 中的 frontmatter keys
+    ALLOWED_KEYS = {"name", "description", "license", "allowed-tools", "metadata"}
+    unexpected = set(frontmatter.keys()) - ALLOWED_KEYS
+    if unexpected:
+        errors.append(
+            f"Unexpected frontmatter key(s): {', '.join(sorted(unexpected))}. "
+            f"Allowed: {', '.join(sorted(ALLOWED_KEYS))}"
+        )
+
+    # 4. name 字段
     name = frontmatter.get("name")
     if not name:
         errors.append("Missing 'name' field in frontmatter")
-    elif not re.match(r"^[a-z][a-z0-9-]*$", name):
-        errors.append(f"name must be kebab-case (got: {name})")
-    elif len(name) > 64:
-        errors.append(f"name must be <= 64 chars (got: {len(name)})")
+    elif not isinstance(name, str):
+        errors.append(f"name must be a string, got {type(name).__name__}")
+    else:
+        name = name.strip()
+        if not re.match(r"^[a-z0-9-]+$", name):
+            errors.append(f"name must be hyphen-case (lowercase letters/digits/hyphens only): {name}")
+        elif name.startswith("-") or name.endswith("-") or "--" in name:
+            errors.append(f"name cannot start/end with hyphen or contain consecutive hyphens: {name}")
+        elif len(name) > 64:
+            errors.append(f"name too long ({len(name)} chars). Maximum is 64.")
 
-    # 4. description 字段
+    # 5. description 字段
     desc = frontmatter.get("description")
     if not desc:
         errors.append("Missing 'description' field in frontmatter")
-    elif len(desc.strip()) < 20:
-        warnings.append("description is very short — may not trigger reliably")
+    elif not isinstance(desc, str):
+        errors.append(f"description must be a string, got {type(desc).__name__}")
+    else:
+        desc_clean = desc.strip()
+        if len(desc_clean) < 20:
+            warnings.append("description is very short — may not trigger reliably")
+        if len(desc_clean) > 1024:
+            errors.append(f"description too long ({len(desc_clean)} chars). Maximum is 1024.")
+        if "<" in desc_clean or ">" in desc_clean:
+            errors.append("description cannot contain angle brackets (< or >)")
 
-    # 5. Body 长度
+    # 6. Body 长度
     body = content[fm_match.end():]
     lines = body.strip().split("\n")
     if len(lines) > 500:
         warnings.append(f"Body is {len(lines)} lines (recommended < 500)")
 
-    # 6. 检查引用的文件是否存在
+    # 7. 检查引用的文件是否存在
     ref_pattern = re.compile(r'\[.*?\]\(((?:scripts|references|assets)/[^\)]+)\)')
     for match in ref_pattern.finditer(body):
         ref_path = os.path.join(skill_dir, match.group(1))
         if not os.path.exists(ref_path):
             errors.append(f"Referenced file not found: {match.group(1)}")
 
-    # 7. 检查目录完整性
+    # 8. 检查目录完整性
     for subdir in ["scripts", "references", "assets"]:
         subdir_path = os.path.join(skill_dir, subdir)
         if os.path.isdir(subdir_path) and not os.listdir(subdir_path):
             warnings.append(f"Empty directory: {subdir}/")
 
-    # 8. allowed-tools 验证
+    # 9. allowed-tools 验证
     allowed_tools = frontmatter.get("allowed-tools")
     if allowed_tools is not None:
         valid_tools = {
@@ -96,7 +119,7 @@ def validate_skill(skill_dir: str) -> dict:
                 if tool not in valid_tools:
                     warnings.append(f"Unknown tool in allowed-tools: {tool}")
 
-    # 9. 禁止文件检查
+    # 10. 禁止文件检查
     forbidden = ["README.md", "CHANGELOG.md", "INSTALLATION_GUIDE.md"]
     for fname in forbidden:
         if os.path.isfile(os.path.join(skill_dir, fname)):

@@ -52,6 +52,32 @@ allowed-tools:                 # 可选: 限制可用工具
 4. Edge case 处理
 5. 引用详细参考文件
 
+## 四种结构模式（参考 Anthropic 官方）
+
+根据 skill 的性质选其一作为 body 的整体骨架：
+
+### 1. Workflow-Based（工作流型）
+**适用：** 有清晰的步骤序列。
+**结构：** Overview → Workflow Decision Tree → Step 1 → Step 2 → ...
+**示例：** PDF 表单填充（分析表单 → 创建映射 → 校验 → 填充 → 验证）
+
+### 2. Task-Based（任务集合型）
+**适用：** 多个互相独立的操作。
+**结构：** Overview → Quick Start → Task A → Task B → Task C ...
+**示例：** PDF 操作（合并 / 拆分 / 提取文本各为独立小节）
+
+### 3. Reference / Guidelines（参考规范型）
+**适用：** 标准、规约、风格指南。
+**结构：** Overview → Guidelines → Specifications → Usage
+**示例：** 品牌设计系统（颜色 / 字体 / 间距规范）
+
+### 4. Capabilities-Based（能力组合型）
+**适用：** 多个互相关联的功能模块。
+**结构：** Overview → Core Capabilities → 1. Feature A → 2. Feature B ...
+**示例：** 产品管理 Agent（含规划、追踪、报告等组合能力）
+
+模式可混合使用。多数 skill 是 Task-Based 为主、复杂操作内部嵌套 Workflow。
+
 ## 自由度选择
 
 | 场景 | 自由度 | 实现方式 |

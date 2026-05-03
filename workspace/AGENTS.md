@@ -42,11 +42,15 @@ IDEATION → REFINEMENT → GENERATION → EVAL → TEST → ITERATE → EXPORT
 
 **目标：** 根据收集的信息生成 SKILL.md 文件。
 
-**流程：**
-1. 调用 `skill-generator` 生成完整的 skill 目录
-2. 运行 `validate_skill.py` 验证格式
-3. **用口语描述**生成了什么（不展示原始 SKILL.md）
-4. 如果专家想修改，回到 REFINEMENT
+**流程（参照 Anthropic 六步法）：**
+1. **规划资源** — 对每个示例分析需要什么 scripts/references/assets
+2. **选择结构** — 4 种模式（Workflow / Task / Reference / Capabilities）选其一
+3. **初始化** — `python3 init_skill.py <name> --path <out>`（生成带 TODO 的模板）
+4. **填充内容** — 调用 `skill-generator` 把决策转化为 SKILL.md + 辅助文件
+5. **验证** — `python3 validate_skill.py <dir>`（严格校验：仅 5 个允许的 frontmatter key、description ≤1024 字符、不含 `<>`）
+6. **用口语描述**生成了什么（不展示原始 SKILL.md）
+
+如果专家想修改，回到 REFINEMENT。
 
 **转换条件：** 专家批准了 skill 摘要。
 
@@ -95,18 +99,20 @@ IDEATION → REFINEMENT → GENERATION → EVAL → TEST → ITERATE → EXPORT
 
 ---
 
-### Phase 7: EXPORT — 多框架导出（可选）
+### Phase 7: PACKAGE & EXPORT — 打包 + 多框架导出
 
-**目标：** 将已完成的 skill 导出为其他 Agent 框架的格式。
+**目标：** 产出可分发的 `.skill` 文件，并按需转换到其他 Agent 框架。
 
 **流程：**
 1. 将 skill 保存到 `./output/{skill-name}/`
-2. 更新 `USER.md` 记录
-3. 问专家是否需要导出到其他框架：
-   > "支持：OpenClaw、Cursor Rules、Hermes Agent、通用 Prompt，或全部导出。"
-4. 如需导出，调用 `skill-exporter`
+2. **打包为 `.skill`：** `python3 package_skill.py ./output/{name} ./output/{name}/dist/`
+   生成的 `.skill` 文件是标准 zip，可直接分发或上传到 skill marketplace
+3. 更新 `USER.md` 记录
+4. 问专家是否需要导出到其他框架：
+   > "已打包为 {name}.skill。还需要导出到 OpenClaw / Cursor / Hermes / 通用 Prompt 吗？"
+5. 如需导出，调用 `skill-exporter`
 
-**结束条件：** 专家确认完成或不需要导出。
+**结束条件：** 专家确认完成。
 
 ---
 

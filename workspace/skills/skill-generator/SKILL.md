@@ -6,88 +6,96 @@
 
 在 GENERATION 阶段，当专家确认了 REFINEMENT 摘要后调用。
 
-## 生成流程
+## 六步生成流程（参照 Anthropic 规范）
 
-### Step 1: 读取决策日志
+### Step 1：读取决策日志
 
-从 `/tmp/skills-creator/session.json` 读取所有 decisions。
+从 `.session/session.json` 读取所有 decisions。
 
-### Step 2: 确定 Skill 结构
+### Step 2：规划可复用资源（关键）
 
-根据决策内容判断需要哪些组件：
+**逐个分析专家给的具体示例**，回答：
+- 这个示例从零执行需要什么？
+- 哪些步骤会重复？→ 候选 `scripts/`
+- 哪些领域知识会被反复查询？→ 候选 `references/`
+- 哪些模板/样板会被复制使用？→ 候选 `assets/`
 
-| 条件 | 创建 |
-|------|------|
-| 任务有确定的步骤序列 | `scripts/` 下的脚本 |
-| 需要领域知识或 API 文档 | `references/` 下的参考文件 |
-| 需要模板或资源文件 | `assets/` 下的资源 |
-| 简单任务 | 只需 SKILL.md |
+**示例：** 创建 `pdf-rotator` skill 处理 "帮我旋转这个 PDF"
+→ 旋转操作每次都要重写代码 → `scripts/rotate_pdf.py`
 
-### Step 3: 生成 SKILL.md
+**示例：** 创建 `bigquery-helper` skill 处理 "查询昨日活跃用户数"
+→ 表 schema 需要反复查阅 → `references/schema.md`
 
-**Frontmatter 规则：**
+### Step 3：选择结构模式
+
+参考 [`references/skill-anatomy.md`](references/skill-anatomy.md) 中的 4 种模式：
+
+| 任务性质 | 推荐模式 |
+|---------|---------|
+| 步骤固定 | Workflow-Based |
+| 多个独立操作 | Task-Based |
+| 标准/规约 | Reference/Guidelines |
+| 多个相关功能 | Capabilities-Based |
+
+复杂工作流参考 [`references/workflows.md`](references/workflows.md)。
+固定输出格式参考 [`references/output-patterns.md`](references/output-patterns.md)。
+
+### Step 4：初始化目录
+
+```bash
+python3 scripts/init_skill.py <name> --path <output-root> --components scripts,references
+```
+
+会生成模板 SKILL.md，里面有 TODO 占位。
+
+### Step 5：填充 SKILL.md 与辅助文件
+
+**Frontmatter 规则（严格遵循 Anthropic spec）：**
+
 ```yaml
 ---
-name: {kebab-case, 从 skill_name 决策获取}
-description: |
-  {从 task_description 决策生成，一行概述}
-  {从 trigger 决策生成触发场景描述}
-  {确保包含具体的触发词和场景}
-allowed-tools:
-  - {根据 tools_apis 决策选择}
+name: hyphen-case-name        # 必须，仅 [a-z0-9-]，≤64 字符
+description: |                # 必须，≤1024 字符，不含 < >
+  一行概述 + 具体触发场景。
+  关键词：用户说"..."、"..."时使用。
+allowed-tools:                # 可选
+  - Bash
+  - Read
+license: MIT                  # 可选
+metadata:                     # 可选
+  version: 1.0.0
 ---
 ```
 
-**description 字段是最重要的** — 它决定了 skill 何时被触发。必须包含：
-1. 一句话概述 skill 做什么
-2. 具体的触发场景和关键词
-3. 中英双语触发词（如果专家使用中文）
+**仅允许这 5 个 frontmatter key。** 其他 key 会被 validate_skill.py 拒绝。
+
+**description 是唯一的触发机制** —— 必须含一句话概述 + 具体触发词。中英双语场景需双语触发词。
 
 **Body 规则：**
-- 保持在 500 行以内
-- 先写核心工作流（步骤序列）
-- 用具体示例而非抽象解释
-- 引用 references/ 下的文件而不是复制内容
-- 包含 edge case 处理说明
+- 保持 < 500 行
+- 只包含 Claude 不知道的信息
+- 具体示例 > 抽象解释
+- 引用 references/ 而不是复制内容
 
-### Step 4: 生成辅助文件
+### Step 6：验证 + 打包
 
-**scripts/ — 当任务有确定步骤时：**
-- Python 优先（跨平台）
-- 每个脚本有明确的单一职责
-- 包含基本的错误处理
-- 在脚本顶部注释输入/输出格式
+```bash
+python3 scripts/validate_skill.py <skill_dir>     # 校验
+python3 scripts/package_skill.py <skill_dir>      # 打包成 .skill (zip)
+```
 
-**references/ — 当需要领域知识时：**
-- 从对话中提取的领域词汇表
-- API 文档摘要
-- 具体的示例和模板
-
-### Step 5: 验证
-
-运行 `scripts/validate_skill.py` 检查：
-- frontmatter 格式正确
-- name 是 kebab-case
-- description 非空且包含触发信息
-- 引用的文件都存在
-- SKILL.md 行数 < 500
-
-### Step 6: 输出
-
-1. 创建目录: `{workspace}/output/{skill-name}/`
-2. 写入所有文件
-3. 更新 session.json 的 `skill_draft_path`
+`package_skill.py` 会先调用 validate；通过后输出 `<name>.skill` 文件。
 
 ## 质量标准
 
-参照 `references/skill-anatomy.md` 中的最佳实践。关键原则：
-
-1. **简洁优先** — Claude 已经很聪明，只提供它不知道的信息
-2. **适当的自由度** — 脆弱操作用脚本，灵活操作用文字指引
-3. **渐进式加载** — SKILL.md 是入口，details 在 references/ 里
-4. **不要多余文件** — 没有 README、CHANGELOG、安装指南
+1. **简洁优先** —— Claude 已经很聪明，只补它不知道的信息
+2. **适当自由度** —— 脆弱操作用脚本，灵活操作用文字指引
+3. **渐进式加载** —— SKILL.md 是入口，detail 在 references/
+4. **禁止多余文件** —— 不要 README、CHANGELOG、INSTALLATION_GUIDE
 
 ## 参考文件
 
-- `references/skill-anatomy.md` — Skill 编写规范和最佳实践
-- `references/example-skills.md` — 3 个优秀 skill 示例供参考
+- [`references/skill-anatomy.md`](references/skill-anatomy.md) — 编写规范、4 种结构模式
+- [`references/workflows.md`](references/workflows.md) — 工作流模式（顺序 / 条件 / 决策树）
+- [`references/output-patterns.md`](references/output-patterns.md) — 输出格式模式（Template / Examples / Schema）
+- [`references/example-skills.md`](references/example-skills.md) — 3 个优秀 skill 示例
