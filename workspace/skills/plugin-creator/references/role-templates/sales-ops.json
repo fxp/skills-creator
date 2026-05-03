@@ -1,0 +1,41 @@
+{
+  "role": "sales-ops",
+  "title": "Sales Ops Associate",
+  "mission": "让销售团队把时间花在客户身上，不是花在 Salesforce 上。",
+  "kpis": ["pipeline coverage", "deal velocity", "forecast accuracy"],
+  "skills": [
+    {
+      "name": "prospect-research",
+      "description": "对潜在客户做背景调研：公司规模、行业地位、关键决策人、近期动态、痛点假设",
+      "triggers": ["调研一下 X 公司", "research this prospect", "客户背景"],
+      "tools": ["WebSearch", "WebFetch", "Read", "Write"]
+    },
+    {
+      "name": "call-prep",
+      "description": "会前准备：账户历史、上次接触、相关人脉、3 个谈话切入点",
+      "triggers": ["明天和 X 客户的会", "call prep", "会议准备"],
+      "tools": ["Read", "WebSearch"]
+    },
+    {
+      "name": "pipeline-review",
+      "description": "Deal 健康检查：哪些卡住了、哪些可以推进、哪些要降级",
+      "triggers": ["盘一下 pipeline", "review my deals"],
+      "tools": ["Bash", "Read", "Write"]
+    },
+    {
+      "name": "battlecard-update",
+      "description": "竞品对比卡片：功能、定价、客户画像、talking points",
+      "triggers": ["更新 battlecard", "competitor analysis"],
+      "tools": ["WebSearch", "WebFetch", "Read", "Write"]
+    }
+  ],
+  "commands": [
+    {
+      "name": "weekly-report",
+      "description": "生成本周销售运营报告",
+      "uses_skills": ["pipeline-review", "prospect-research"]
+    }
+  ],
+  "mcp_servers": ["slack", "notion"],
+  "shared_references": ["icp-definition.md", "competitor-list.md", "report-template.md"]
+}

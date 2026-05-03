@@ -4,6 +4,15 @@
 
 Built on [OpenClaw](https://openclaw.ai/) with [BigModel (GLM-5)](https://open.bigmodel.cn/) as the default LLM.
 
+## Two Modes
+
+| Mode | Output | Use Case |
+|------|--------|----------|
+| 🔧 **Skill Mode** | One `SKILL.md` + scripts + tests | Personal automation, project-specific tools |
+| 👥 **Plugin Mode** | Complete plugin: `plugin.json` + N skills + commands + MCP config | Enterprise digital employees, team distributions |
+
+Plugin Mode generates **enterprise-ready digital employees** — bundles of skills wrapped as Claude Code Plugins, including Slack/Notion/Salesforce MCP integration. Inspired by [Anthropic's knowledge-work-plugins](https://github.com/anthropics/knowledge-work-plugins). 10 baseline role templates included (Sales Ops, Finance Analyst, Customer Support, Recruiting, ...).
+
 ## What It Does
 
 Domain experts describe their repetitive tasks through natural conversation. The agent:
@@ -17,16 +26,40 @@ Domain experts describe their repetitive tasks through natural conversation. The
 
 The expert never needs to know any syntax — they just talk.
 
-## 📦 See a Real Example
+## 📦 See Real Examples
 
-Browse [`examples/commit-message-enhancer/`](./examples/commit-message-enhancer/) for a complete, reproducible output:
+### Skill Example
+Browse [`examples/commit-message-enhancer/`](./examples/commit-message-enhancer/) for a single-skill output (12 dialogue decisions → SKILL.md + 8 evals + 4 framework exports).
 
-- [Conversation transcript](./examples/commit-message-enhancer/transcript.md) — 15 dialogue turns across 7 phases
-- [Generated SKILL.md](./examples/commit-message-enhancer/SKILL.md) — Claude Code skill with scripts + glossary
-- [Auto-generated eval suite](./examples/commit-message-enhancer/evals/eval-suite.json) — 8 behavioral tests
-- [4 framework exports](./examples/commit-message-enhancer/exports/) — OpenClaw / Cursor / Hermes / Generic
+### Plugin Example (Enterprise Digital Employee)
+Browse [`examples/sales-ops-plugin/`](./examples/sales-ops-plugin/) for a complete **Sales Ops Associate** digital employee:
 
-**All produced end-to-end by this tool from 12 dialogue decisions.** The generated script even catches fake API keys planted in test diffs.
+- 4 skills (prospect-research, call-prep, pipeline-review, battlecard-update)
+- 1 command (`/sales-ops:weekly-report`)
+- Slack + Notion MCP server config
+- Validated and packaged via `package_plugin.py` → `sales-ops.zip` + marketplace snippet
+
+### Skill detail
+
+Skill mode produces an end-to-end reproducible output from 12 dialogue decisions:
+- [Conversation transcript](./examples/commit-message-enhancer/transcript.md) (15 turns)
+- [Generated SKILL.md](./examples/commit-message-enhancer/SKILL.md) with scripts + glossary
+- [Auto-generated eval suite](./examples/commit-message-enhancer/evals/eval-suite.json) (8 behavioral tests)
+- [4 framework exports](./examples/commit-message-enhancer/exports/)
+
+The generated script even catches fake API keys planted in test diffs.
+
+## 10 Baseline Enterprise Roles
+
+Plugin Mode ships with role templates (`workspace/skills/plugin-creator/references/role-templates/`) for instant scaffolding:
+
+| Role | Plugin Output |
+|------|---------------|
+| Sales Ops Associate | `sales-ops/` — 4 skills + weekly-report command + Slack/Notion |
+| Finance Analyst | `finance-analyst/` — 6 skills (journal entry, reconciliation, variance analysis, ...) |
+| Customer Support Specialist | `customer-support/` — 5 skills (triage, drafting, escalation, KB) |
+| Recruiting Specialist | `recruiting/` — 4 skills (JD drafting, screening, notes, offers) |
+| Marketing / Product / Legal / Data / Search / Productivity | See [`enterprise-roles.md`](./workspace/skills/plugin-creator/references/enterprise-roles.md) |
 
 ## Supported Export Formats
 

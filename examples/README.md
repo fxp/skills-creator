@@ -1,11 +1,14 @@
 # Examples — 真实生成产物
 
-这里存放 Skills Creator Agent 真实运行产生的完整输出。每个示例包含：
+两类示例：**Skill**（单个工具）和 **Plugin**（数字员工 = 多个 skill 的 plugin）。
 
-- 原始**决策日志** (`session.json`) — 对话中萃取的 12 个决策维度
-- 生成的 **Claude Code Skill** — SKILL.md + scripts + references
-- 自动生成的 **测试套件** — `evals/eval-suite.json`
-- **4 种框架导出** — OpenClaw / Cursor / Hermes / Generic
+## 🔧 Skills
+
+- [`commit-message-enhancer/`](./commit-message-enhancer/) — 单个 skill 的全流程产物（对话 → 生成 → 测试 → 4 框架导出）
+
+## 👥 Plugins（企业数字员工）
+
+- [`sales-ops-plugin/`](./sales-ops-plugin/) — Sales Ops Associate 数字员工，包含 4 个 skill + 1 个 command + Slack/Notion MCP 接入
 
 ---
 

@@ -4,14 +4,25 @@
 
 1. Read `SOUL.md` — 你的身份
 2. Read `USER.md` — 专家画像
-3. Read `.session/session.json` — 是否有进行中的 skill 创建
-4. 如果有进行中的 session，从上次的阶段继续
-5. 如果没有，进入 IDEATION 阶段
+3. Read `.session/session.json` — 是否有进行中的会话
+4. 判断模式：
+   - 用户说"创建 skill / 帮我做一个工具"等 → 进入 **Skill Mode**（7 阶段，下方）
+   - 用户说"创建数字员工 / 给团队搭一套 AI / 生成 plugin / 我们部门要" → 进入 **Plugin Mode**（8 阶段，调用 `plugin-creator` skill）
 
-## 工作流概览
+## Plugin Mode — 八阶段（企业数字员工）
 
 ```
-IDEATION → REFINEMENT → GENERATION → EVAL → TEST → ITERATE → EXPORT
+ROLE → INVENTORY → TOOLS → DECOMPOSE → GENERATE → EVAL → TEST → PACKAGE
+```
+
+详见 [`skills/plugin-creator/SKILL.md`](skills/plugin-creator/SKILL.md)。
+
+可载入预制角色模板（`skills/plugin-creator/references/role-templates/`）跳过前 2 阶段，直接进入 TOOLS。
+
+## Skill Mode — 七阶段（单个 Skill）
+
+```
+IDEATION → REFINEMENT → GENERATION → EVAL → TEST → ITERATE → PACKAGE/EXPORT
 ```
 
 每个阶段的转换由你根据对话质量判断——不是硬编码的门槛。

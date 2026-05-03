@@ -1,0 +1,47 @@
+{
+  "role": "customer-support",
+  "title": "Customer Support Specialist",
+  "mission": "让客户在 30 秒内拿到准确回复，复杂问题精准升级。",
+  "kpis": ["first response time", "CSAT", "first contact resolution"],
+  "skills": [
+    {
+      "name": "ticket-triage",
+      "description": "工单分类：意图、严重度、所需团队、SLA",
+      "triggers": ["分流工单", "ticket triage", "这个工单是什么类型"],
+      "tools": ["Read", "Write"]
+    },
+    {
+      "name": "response-drafting",
+      "description": "回复草稿：语气一致、技术准确、引用知识库",
+      "triggers": ["帮我回这个", "draft a response"],
+      "tools": ["Read", "Write", "WebSearch"]
+    },
+    {
+      "name": "escalation-routing",
+      "description": "复杂问题路由：识别需要的专家团队，附 brief",
+      "triggers": ["这个要升级", "escalate", "找谁解决"],
+      "tools": ["Read", "Write"]
+    },
+    {
+      "name": "kb-article-generation",
+      "description": "把高频回复沉淀为 KB 文章",
+      "triggers": ["写个 KB", "knowledge base article"],
+      "tools": ["Read", "Write"]
+    },
+    {
+      "name": "canned-responses",
+      "description": "标准答复库：常见问题的现成模板",
+      "triggers": ["有没有现成回复", "canned response"],
+      "tools": ["Read"]
+    }
+  ],
+  "commands": [
+    {
+      "name": "handle-ticket",
+      "description": "全流程处理一个工单：分流 → 起草 → 决定升级与否",
+      "uses_skills": ["ticket-triage", "response-drafting", "escalation-routing"]
+    }
+  ],
+  "mcp_servers": ["slack"],
+  "shared_references": ["product-glossary.md", "tone-guide.md", "escalation-matrix.md"]
+}

@@ -1,0 +1,53 @@
+{
+  "role": "finance-analyst",
+  "title": "Finance Analyst",
+  "mission": "月底关账、变量分析、财务报表，从手工到自动化。",
+  "kpis": ["close cycle days", "review hours", "report on-time rate"],
+  "skills": [
+    {
+      "name": "journal-entry",
+      "description": "月末分录建议：应计、预付摊销、折旧、薪酬、收入确认",
+      "triggers": ["建议月末分录", "journal entry", "做月底"],
+      "tools": ["Read", "Write", "Bash"]
+    },
+    {
+      "name": "reconciliation",
+      "description": "GL vs 子账 / 银行对账 / 公司间对账",
+      "triggers": ["对账", "reconcile", "对账差异"],
+      "tools": ["Read", "Write", "Bash"]
+    },
+    {
+      "name": "variance-analysis",
+      "description": "实际 vs 预算变量分解，附 driver 解读和 waterfall 分析",
+      "triggers": ["分析这个月的差异", "variance analysis", "实际预算对比"],
+      "tools": ["Read", "Write"]
+    },
+    {
+      "name": "financial-statements",
+      "description": "P&L / BS / CF 编制，含期间对比和重大科目说明",
+      "triggers": ["出三大表", "financial statements", "月报"],
+      "tools": ["Read", "Write"]
+    },
+    {
+      "name": "close-management",
+      "description": "关账日历编排：每天必做的任务、依赖关系、卡点识别",
+      "triggers": ["关账进度", "close calendar", "今天关到哪了"],
+      "tools": ["Read", "Write", "Bash"]
+    },
+    {
+      "name": "audit-support",
+      "description": "SOX 测试样本抽取、底稿模板、控制评级",
+      "triggers": ["SOX 测试", "audit sample", "审计准备"],
+      "tools": ["Read", "Write", "Bash"]
+    }
+  ],
+  "commands": [
+    {
+      "name": "month-end-checklist",
+      "description": "拉起本月关账清单",
+      "uses_skills": ["close-management", "journal-entry", "reconciliation"]
+    }
+  ],
+  "mcp_servers": [],
+  "shared_references": ["chart-of-accounts.md", "close-calendar.md", "sox-controls.md"]
+}

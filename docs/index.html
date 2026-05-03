@@ -645,6 +645,36 @@
     </div>
   </section>
 
+  <!-- § V·b — PLUGIN MODE / DIGITAL EMPLOYEE -->
+  <section class="section">
+    <div class="section-num" data-i18n="sPluginNum">§ V·b — Plugin Mode — Enterprise Digital Employee</div>
+    <h2 class="section-title" data-i18n="sPluginTitle" data-i18n-html>From skill to <em>colleague</em>.</h2>
+    <p class="body-text" style="margin-bottom:24px;" data-i18n="sPluginBody" data-i18n-html>The same Socratic method scales up: a single dialogue can produce not just a skill, but a complete <em>Claude Code Plugin</em> — a digital employee bundling 4–7 skills, slash commands, and MCP server connections (Slack, Notion, Salesforce, ...). Modeled on Anthropic's <a href="https://github.com/anthropics/knowledge-work-plugins" style="color:var(--vermilion);">knowledge-work-plugins</a>.</p>
+
+    <div class="exhibits" style="margin-top:24px;">
+      <div class="exhibit"><div class="label" data-i18n="rA">Role A</div><h3 data-i18n="rATitle">Sales Ops</h3><div class="target" data-i18n="rAt">4 skills · Slack + Notion</div><code>prospect-research<br>call-prep<br>pipeline-review<br>battlecard-update<br>/weekly-report</code></div>
+      <div class="exhibit"><div class="label" data-i18n="rB">Role B</div><h3 data-i18n="rBTitle">Finance Analyst</h3><div class="target" data-i18n="rBt">6 skills · local files</div><code>journal-entry<br>reconciliation<br>variance-analysis<br>financial-statements<br>close-management<br>audit-support</code></div>
+      <div class="exhibit"><div class="label" data-i18n="rC">Role C</div><h3 data-i18n="rCTitle">Customer Support</h3><div class="target" data-i18n="rCt">5 skills · Slack</div><code>ticket-triage<br>response-drafting<br>escalation-routing<br>kb-article-generation<br>canned-responses</code></div>
+      <div class="exhibit"><div class="label" data-i18n="rD">Role D</div><h3 data-i18n="rDTitle">Recruiting</h3><div class="target" data-i18n="rDt">4 skills · local</div><code>jd-drafting<br>resume-screening<br>interview-notes-synthesis<br>offer-letter-generation</code></div>
+      <div class="exhibit"><div class="label" data-i18n="rPlus">+ 6 More</div><h3 data-i18n="rPlusTitle">Marketing · Product · Legal · Data · Search · Productivity</h3><div class="target" data-i18n="rPlust">10 baseline templates</div><code data-i18n="rPlusCode">See enterprise-roles.md</code></div>
+    </div>
+
+    <div class="casefile-grid" style="margin-top:32px;">
+      <a class="casefile" href="https://github.com/fxp/skills-creator/tree/main/examples/sales-ops-plugin">
+        <span class="file-no">Doc 05</span>
+        <h4 data-i18n="cf5Title">Sales Ops — Worked Example</h4>
+        <p data-i18n="cf5Desc">Complete digital employee plugin (plugin.json + 4 skills + command + .mcp.json + README), packaged.</p>
+        <span class="arrow">→</span>
+      </a>
+      <a class="casefile" href="https://github.com/fxp/skills-creator/blob/main/workspace/skills/plugin-creator/references/enterprise-roles.md">
+        <span class="file-no">Doc 06</span>
+        <h4 data-i18n="cf6Title">10 Role Catalog</h4>
+        <p data-i18n="cf6Desc">Mission, KPIs, baseline skill list per role.</p>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </section>
+
   <!-- § VI -->
   <section class="section">
     <div class="section-num" data-i18n="s6Num">§ VI — Installation Directives</div>
@@ -747,6 +777,17 @@
       cf3Title: 'The Tests',        cf3Desc: 'Eight behavioral evals — happy paths, edges, security.',
       cf4Title: 'The Exports',      cf4Desc: 'Four framework destinations from one source.',
 
+      sPluginNum: '§ V·b — Plugin Mode — Enterprise Digital Employee',
+      sPluginTitle: 'From skill to <em>colleague</em>.',
+      sPluginBody: "The same Socratic method scales up: a single dialogue can produce not just a skill, but a complete <em>Claude Code Plugin</em> — a digital employee bundling 4–7 skills, slash commands, and MCP server connections (Slack, Notion, Salesforce, ...). Modeled on Anthropic's <a href=\"https://github.com/anthropics/knowledge-work-plugins\" style=\"color:var(--vermilion);\">knowledge-work-plugins</a>.",
+      rA: 'Role A', rATitle: 'Sales Ops', rAt: '4 skills · Slack + Notion',
+      rB: 'Role B', rBTitle: 'Finance Analyst', rBt: '6 skills · local files',
+      rC: 'Role C', rCTitle: 'Customer Support', rCt: '5 skills · Slack',
+      rD: 'Role D', rDTitle: 'Recruiting', rDt: '4 skills · local',
+      rPlus: '+ 6 More', rPlusTitle: 'Marketing · Product · Legal · Data · Search · Productivity', rPlust: '10 baseline templates', rPlusCode: 'See enterprise-roles.md',
+      cf5Title: 'Sales Ops — Worked Example', cf5Desc: 'Complete digital employee plugin (plugin.json + 4 skills + command + .mcp.json + README), packaged.',
+      cf6Title: '10 Role Catalog', cf6Desc: 'Mission, KPIs, baseline skill list per role.',
+
       s6Num: '§ VI — Installation Directives',
       s6Title: 'Run it on<br><em>your</em> machine.',
       terminalLabel: '$ TERMINAL — INSTALLATION DIRECTIVES',
@@ -819,6 +860,17 @@
       cf2Title: '生成的 Skill', cf2Desc: 'SKILL.md、脚本、术语表。',
       cf3Title: '测试套件',     cf3Desc: '八个行为 eval —— 正常路径、边界、安全。',
       cf4Title: '多框架导出',   cf4Desc: '一份知识，四个去处。',
+
+      sPluginNum: '§ V·b —— Plugin 模式 —— 企业数字员工',
+      sPluginTitle: '从 skill，<br>到<em>同事</em>。',
+      sPluginBody: '同样的苏格拉底方法可以放大尺度：一段对话不只产出一个 skill，更可产出完整的 <em>Claude Code Plugin</em> ——一位数字员工，包含 4–7 个 skill、slash 命令、以及 MCP 服务连接（Slack、Notion、Salesforce ...）。参照 Anthropic 的 <a href="https://github.com/anthropics/knowledge-work-plugins" style="color:var(--vermilion);">knowledge-work-plugins</a>。',
+      rA: '角色 A', rATitle: '销售运营', rAt: '4 个 skill · Slack + Notion',
+      rB: '角色 B', rBTitle: '财务分析师', rBt: '6 个 skill · 本地文件',
+      rC: '角色 C', rCTitle: '客服专员', rCt: '5 个 skill · Slack',
+      rD: '角色 D', rDTitle: '招聘专员', rDt: '4 个 skill · 本地',
+      rPlus: '另外 6 个', rPlusTitle: '市场 · 产品 · 法务 · 数据 · 搜索 · 行政', rPlust: '10 种基线角色模板', rPlusCode: '见 enterprise-roles.md',
+      cf5Title: '销售运营 —— 实例', cf5Desc: '完整的数字员工 plugin（plugin.json + 4 个 skill + command + .mcp.json + README），已打包。',
+      cf6Title: '10 个角色目录', cf6Desc: '每个角色的使命、KPI、基线技能清单。',
 
       s6Num: '§ VI —— 安装指令',
       s6Title: '在<em>你的</em>机器上<br>跑起来。',

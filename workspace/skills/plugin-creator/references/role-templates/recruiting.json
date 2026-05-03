@@ -1,0 +1,41 @@
+{
+  "role": "recruiting",
+  "title": "Recruiting Specialist",
+  "mission": "让招聘团队聚焦在面试上，不是看简历上。",
+  "kpis": ["time to fill", "interview pass rate", "candidate NPS"],
+  "skills": [
+    {
+      "name": "jd-drafting",
+      "description": "岗位描述撰写：职责、要求、福利、文化",
+      "triggers": ["写个 JD", "draft a job description"],
+      "tools": ["Read", "Write", "WebSearch"]
+    },
+    {
+      "name": "resume-screening",
+      "description": "简历初筛：硬性条件 + 软性匹配度，附评分和理由",
+      "triggers": ["筛一下这批简历", "screen resumes"],
+      "tools": ["Read", "Write"]
+    },
+    {
+      "name": "interview-notes-synthesis",
+      "description": "面试记录归纳：候选人的优势、风险、决策建议",
+      "triggers": ["整理面试反馈", "synthesize interview notes"],
+      "tools": ["Read", "Write"]
+    },
+    {
+      "name": "offer-letter-generation",
+      "description": "Offer 起草：薪酬包、入职日期、合规条款",
+      "triggers": ["发 offer", "draft offer letter"],
+      "tools": ["Read", "Write"]
+    }
+  ],
+  "commands": [
+    {
+      "name": "process-candidate",
+      "description": "从筛简历到出 offer 决策的全流程",
+      "uses_skills": ["resume-screening", "interview-notes-synthesis"]
+    }
+  ],
+  "mcp_servers": [],
+  "shared_references": ["competency-framework.md", "compensation-bands.md", "interview-rubrics.md"]
+}
